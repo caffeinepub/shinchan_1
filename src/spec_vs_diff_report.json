@@ -1,0 +1,52 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T03:43:31.502Z",
+  "summary": "A new authenticated route (/face-detector) and a visible “Face Detector” navigation button were added. However, the actual Face Detector functionality (webcam/photo modes with overlays, model loading UX, and error handling) is not implemented; the page mainly shows installation instructions and a “Feature Not Available” message. Model-related utilities/hooks and static model asset placeholders were added, but dependency integration is not completed in the diff.",
+  "missing_requirements": [
+    {
+      "id": "REQ-7",
+      "requirement": "Implement the Face Detector page with two usable modes (“Webcam” and “Photo Upload”), including start/stop camera, image upload/clear, and overlaying detected face bounding boxes locally in-browser, with camera-permission/no-camera error handling while keeping photo upload usable.",
+      "reason": "The added FaceDetectorPage content shown is an informational/installation-required page and does not show any UI for webcam start/stop, tabs/modes (“Webcam” / “Photo Upload”), image upload/clear, or real-time/photo detection overlays and related error handling.",
+      "evidence": [
+        "frontend/src/pages/FaceDetectorPage.tsx (truncated snippet shows 'Feature Not Available' and installation steps, not webcam/upload detection UI)"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Integrate a browser-based face detection library (e.g., face-api.js) with production-ready static model assets under frontend/public, plus visible model-loading state that disables detection controls until ready, and a clear English error with suggested retry if model loading fails.",
+      "reason": "The diff does not show adding the actual dependency (e.g., package.json update) and the FaceDetectorPage explicitly states the package is not installed. While model files/paths and a loading hook are added, the page shown does not implement the required loading/disable-controls UX or failure+retry UX for an operational detector page.",
+      "evidence": [
+        "frontend/src/pages/FaceDetectorPage.tsx (states face-api.js must be installed; 'Feature Not Available')",
+        "frontend/public/models/face-api/INSTALLATION_REQUIRED.md",
+        "frontend/src/hooks/useFaceApiModels.ts (added, but no evidence the page uses it to drive a working loading/ready/error UI)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Added an installation/instructions-only Face Detector page that blocks functionality and tells the user to manually edit package.json and download models (including documentation links and multi-step setup guidance).",
+      "reason": "The BuildRequest requires implementing the feature in-app, not shipping a blocked 'Feature Not Available' page with manual installation instructions as the primary UI.",
+      "evidence": [
+        "frontend/src/pages/FaceDetectorPage.tsx",
+        "frontend/public/models/face-api/INSTALLATION_REQUIRED.md",
+        "frontend/public/models/face-api/README.md"
+      ]
+    }
+  ],
+  "confidence": 0.78,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/public/models/face-api/INSTALLATION_REQUIRED.md",
+    "frontend/public/models/face-api/README.md",
+    "frontend/public/models/face-api/tiny_face_detector_model-shard1",
+    "frontend/public/models/face-api/tiny_face_detector_model-weights_manifest.json",
+    "frontend/src/App.tsx",
+    "frontend/src/components/layout/AppLayout.tsx",
+    "frontend/src/hooks/useFaceApiModels.ts",
+    "frontend/src/pages/FaceDetectorPage.tsx",
+    "frontend/src/types/face-api.d.ts",
+    "frontend/src/utils/faceDetectionOverlay.ts",
+    "project_state.json"
+  ]
+}

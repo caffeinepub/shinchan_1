@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Build a diary website named \"shinchan\" and add a face detection feature (webcam + photo upload).",
+  "architectural_notes": [
+    "Face detection will be implemented in the React frontend (browser-based, e.g., face-api.js) with no backend changes; support both webcam and image upload flows."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-add-internet-identity-sign-in-out-to-the-app-and-gate-diary-crud-features-so-that-only-signed-in-users-can-create-view-edit-or-delete-diary-entries",
+      "title": "Add Internet Identity sign-in/out to the app and gate diary CRUD features so that only signed-in users can create, view, edit, or delete diary entries.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-diary-ui-for-shinchan-with-the-following-screens-1-home-landing-page-with-app-name-shinchan-2-entries-list-with-search-by-title-content-and-filter-by-date-3-entry-detail-view-4-create-entry-form-5-edit-entry-form-6-delete-confirmation",
+      "title": "Implement the diary UI for 'shinchan' with the following screens: (1) Home/Landing page with app name 'shinchan', (2) Entries list with search (by title/content) and filter by date, (3) Entry detail view, (4) Create entry form, (5) Edit entry form, (6) Delete confirmation.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-wire-the-frontend-to-the-backend-using-react-query-for-all-diary-operations-list-get-create-update-delete-including-loading-states-error-handling-and-success-feedback",
+      "title": "Wire the frontend to the backend using React Query for all diary operations (list/get/create/update/delete), including loading states, error handling, and success feedback.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-cohesive-visual-theme-for-the-shinchan-diary-app-consistent-colors-typography-spacing-and-component-styling-using-tailwind-shadcn-components-avoid-a-blue-purple-primary-palette",
+      "title": "Apply a cohesive visual theme for the 'shinchan' diary app (consistent colors, typography, spacing, and component styling) using Tailwind + shadcn components; avoid a blue/purple primary palette.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-static-brand-images-to-the-frontend-and-display-them-in-the-ui-e-g-logo-in-header-and-subtle-background-hero-visual-on-landing-page-store-generated-assets-under-frontend-public-assets-generated-and-reference-them-directly-from-the-frontend-no-backend-image-routing",
+      "title": "Add generated static brand images to the frontend and display them in the UI (e.g., logo in header and subtle background/hero visual on landing page). Store generated assets under frontend/public/assets/generated and reference them directly from the frontend (no backend image routing).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-authenticated-face-detector-page-that-supports-both-1-live-webcam-face-detection-and-2-photo-upload-face-detection-running-entirely-in-the-browser-no-server-side-processing",
+      "title": "Add a new authenticated Face Detector page that supports both (1) live webcam face detection and (2) photo upload face detection, running entirely in the browser (no server-side processing).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-a-browser-based-face-detection-library-e-g-face-api-js-and-add-required-model-assets-as-static-files-so-the-face-detector-page-works-in-production-builds",
+      "title": "Integrate a browser-based face detection library (e.g., face-api.js) and add required model assets as static files so the Face Detector page works in production builds.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-entry-point-to-reach-the-face-detector-page-from-the-existing-app-ui-navigation-using-english-user-facing-labels",
+      "title": "Add an entry point to reach the Face Detector page from the existing app UI (navigation) using English user-facing labels.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a diary website (\"shinchan\")",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create the core diary data model and persistence in the Motoko single-actor backend to store diary entries per authenticated user (by caller principal). Each entry must include: id, createdAt, updatedAt, entryDate (user-selected date), title, and content.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add face detection to the shinchan diary app supporting both webcam live detection and photo upload detection (frontend-based, e.g., face-api.js).",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "shinchan",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,93 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add in-browser Face Detector page (webcam + photo upload) to shinchan diary app",
+  "requirements": [
+    {
+      "id": "REQ-7",
+      "summary": "Create an authenticated Face Detector page with Webcam and Photo Upload modes, performing face detection fully in-browser with bounding-box overlays and robust error handling.",
+      "acceptanceCriteria": [
+        "A new route exists for the face detector page and it is wrapped in the existing <RequireAuth> gate, consistent with other diary features.",
+        "The page provides two clear modes (e.g., tabs or segmented controls) labeled in English: “Webcam” and “Photo Upload”.",
+        "Webcam mode: user can start and stop the camera; when running, the UI renders the video and overlays detected face bounding boxes in real time (or near-real time).",
+        "Photo Upload mode: user can select an image file; the UI renders the image and overlays detected face bounding boxes; user can clear and upload another image.",
+        "If camera permission is denied or no camera is available, show a clear English error message and the page remains usable (photo upload still works).",
+        "All detection is performed locally in the browser; no images/video are uploaded to the backend."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/FaceDetectorPage.tsx",
+          "operation": "create",
+          "description": "Implement the Face Detector page UI and logic: a two-mode control (English labels “Webcam” and “Photo Upload”), model initialization gating, webcam start/stop controls, file input with clear/reset, and canvas overlays for face bounding boxes. Use the selected camera component’s useCamera hook for webcam preview/controls (Verify the component's usage instructions before implementing.). Ensure camera permission/not-found errors show clear English messaging while keeping Photo Upload usable. Ensure no backend calls are made and no media is uploaded."
+        },
+        {
+          "path": "frontend/src/hooks/useFaceApiModels.ts",
+          "operation": "create",
+          "description": "Add a dedicated hook that loads/initializes face detection models from static assets, exposes loading/ready/error state, and provides a retry action to re-attempt initialization after failures. This hook should be used by the Face Detector page to disable detection controls until ready."
+        },
+        {
+          "path": "frontend/src/utils/faceDetectionOverlay.ts",
+          "operation": "create",
+          "description": "Add utilities to draw bounding boxes onto a canvas overlay for both video and image modes (e.g., clearing canvas, scaling boxes to displayed dimensions, and rendering labeled rectangles). Keep this frontend-only and reusable by the Face Detector page."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Integrate a browser face detection library and ship required model assets under frontend/public with loading and failure states.",
+      "acceptanceCriteria": [
+        "Frontend dependencies required for face detection are added and build successfully.",
+        "Required face detection model files are stored under frontend/public (or an equivalent static path) and are fetched by the browser at runtime without any backend image/model routing.",
+        "The app shows a visible loading state while face detection models are being downloaded/initialized, and disables detection controls until initialization completes.",
+        "If model loading fails (e.g., network error), the UI shows a clear English error message with a suggested retry action."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/package.json",
+          "operation": "modify",
+          "description": "Add the browser-based face detection dependency (e.g., face-api.js) and any required supporting dependencies/types so the frontend builds successfully in production."
+        },
+        {
+          "path": "frontend/public/models/face-api/README.md",
+          "operation": "create",
+          "description": "Document which face detection models are included, where they were sourced from, and which public paths the app expects at runtime (so production builds fetch models from static assets, not the backend)."
+        },
+        {
+          "path": "frontend/public/models/face-api/tiny_face_detector_model-weights_manifest.json",
+          "operation": "create",
+          "description": "Add required face-api model manifest as a static asset referenced by the in-browser model loader."
+        },
+        {
+          "path": "frontend/public/models/face-api/tiny_face_detector_model-shard1.bin",
+          "operation": "create",
+          "description": "Add required face-api model weights as a static asset referenced by the in-browser model loader."
+        },
+        {
+          "path": "frontend/src/pages/FaceDetectorPage.tsx",
+          "operation": "modify",
+          "description": "Wire visible model-loading UI state (e.g., loading indicator) and disable detection controls until model initialization completes; show a clear English error state when model loading fails with a retry action that calls the model hook’s retry."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Add English-labeled navigation to reach the Face Detector page using the existing TanStack Router setup without breaking existing routes.",
+      "acceptanceCriteria": [
+        "There is a visible navigation element (e.g., header link/button or entries page action) labeled “Face Detector” that routes to the Face Detector page.",
+        "Navigation uses the existing TanStack Router setup (frontend/src/App.tsx) and does not break existing routes (/ , /entries, /entries/new, /entries/$entryId)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register a new TanStack Router route for the Face Detector page (e.g., /face-detector) and wrap it in the existing <RequireAuth> gate, consistent with other diary feature routes."
+        },
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Add a visible navigation element in the existing header labeled “Face Detector” that navigates to the Face Detector route using TanStack Router primitives. Keep existing header/login behavior intact."
+        }
+      ]
+    }
+  ]
+}

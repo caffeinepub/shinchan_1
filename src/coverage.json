@@ -1,0 +1,83 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T03:43:31.504Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 3,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-7",
+        "summary": "Add a new authenticated Face Detector page that supports both (1) live webcam face detection and (2) photo upload face detection, running entirely in the browser (no server-side processing).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/FaceDetectorPage.tsx",
+          "frontend/src/hooks/useFaceApiModels.ts",
+          "frontend/src/utils/faceDetectionOverlay.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/FaceDetectorPage.tsx",
+          "frontend/src/hooks/useFaceApiModels.ts",
+          "frontend/src/utils/faceDetectionOverlay.ts"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Integrate a browser-based face detection library (e.g., face-api.js) and add required model assets as static files so the Face Detector page works in production builds.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/package.json",
+          "frontend/public/models/face-api/README.md",
+          "frontend/public/models/face-api/tiny_face_detector_model-weights_manifest.json",
+          "frontend/public/models/face-api/tiny_face_detector_model-shard1.bin",
+          "frontend/src/pages/FaceDetectorPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/public/models/face-api/README.md",
+          "frontend/public/models/face-api/tiny_face_detector_model-weights_manifest.json",
+          "frontend/src/pages/FaceDetectorPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Add an entry point to reach the Face Detector page from the existing app UI (navigation) using English user-facing labels.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/layout/AppLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/layout/AppLayout.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "build-template/README.md",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/public/models/face-api/INSTALLATION_REQUIRED.md",
+    "frontend/public/models/face-api/README.md",
+    "frontend/public/models/face-api/tiny_face_detector_model-shard1",
+    "frontend/public/models/face-api/tiny_face_detector_model-weights_manifest.json",
+    "frontend/src/App.tsx",
+    "frontend/src/camera/useCamera.ts",
+    "frontend/src/components/layout/AppLayout.tsx",
+    "frontend/src/hooks/useFaceApiModels.ts",
+    "frontend/src/pages/FaceDetectorPage.tsx",
+    "frontend/src/types/face-api.d.ts",
+    "frontend/src/utils/faceDetectionOverlay.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

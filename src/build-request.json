@@ -1,0 +1,88 @@
+{
+  "kind": "build_request",
+  "title": "Add Face Detection (Webcam + Photo Upload) to shinchan diary app",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-7",
+      "text": "Add a new authenticated Face Detector page that supports both (1) live webcam face detection and (2) photo upload face detection, running entirely in the browser (no server-side processing).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Both"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new route exists for the face detector page and it is wrapped in the existing <RequireAuth> gate, consistent with other diary features.",
+        "The page provides two clear modes (e.g., tabs or segmented controls) labeled in English: “Webcam” and “Photo Upload”.",
+        "Webcam mode: user can start and stop the camera; when running, the UI renders the video and overlays detected face bounding boxes in real time (or near-real time).",
+        "Photo Upload mode: user can select an image file; the UI renders the image and overlays detected face bounding boxes; user can clear and upload another image.",
+        "If camera permission is denied or no camera is available, show a clear English error message and the page remains usable (photo upload still works).",
+        "All detection is performed locally in the browser; no images/video are uploaded to the backend."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Integrate a browser-based face detection library (e.g., face-api.js) and add required model assets as static files so the Face Detector page works in production builds.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Both"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Frontend dependencies required for face detection are added and build successfully.",
+        "Required face detection model files are stored under frontend/public (or an equivalent static path) and are fetched by the browser at runtime without any backend image/model routing.",
+        "The app shows a visible loading state while face detection models are being downloaded/initialized, and disables detection controls until initialization completes.",
+        "If model loading fails (e.g., network error), the UI shows a clear English error message with a suggested retry action."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Add an entry point to reach the Face Detector page from the existing app UI (navigation) using English user-facing labels.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Both"
+        ]
+      },
+      "acceptanceCriteria": [
+        "There is a visible navigation element (e.g., header link/button or entries page action) labeled “Face Detector” that routes to the Face Detector page.",
+        "Navigation uses the existing TanStack Router setup (frontend/src/App.tsx) and does not break existing routes (/ , /entries, /entries/new, /entries/$entryId)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/immutablePaths (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui). Compose or add new files instead.",
+    "Keep the backend as a single Motoko actor (backend/main.mo). Face detection must be implemented on the frontend only; no backend endpoints or storage for images/video.",
+    "Use English for any user-facing text added by this change."
+  ],
+  "nonGoals": [
+    "Storing face detection results, images, or video in the backend canister.",
+    "User identity verification, face recognition (who the person is), or any biometric authentication flow.",
+    "Real-time multi-user features (WebSockets/chat) related to face detection."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

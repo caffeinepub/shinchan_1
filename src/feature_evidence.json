@@ -1,0 +1,70 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-a-new-authenticated-face-detector-page-that-supports-both-1-live-webcam-face-detection-and-2-photo-upload-face-detection-running-entirely-in-the-browser-no-server-side-processing",
+      "featureTitle": "Add a new authenticated Face Detector page that supports both (1) live webcam face detection and (2) photo upload face detection, running entirely in the browser (no server-side processing).",
+      "files": [
+        "frontend/src/hooks/useFaceApiModels.ts",
+        "frontend/src/pages/FaceDetectorPage.tsx",
+        "frontend/src/utils/faceDetectionOverlay.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-integrate-a-browser-based-face-detection-library-e-g-face-api-js-and-add-required-model-assets-as-static-files-so-the-face-detector-page-works-in-production-builds",
+      "featureTitle": "Integrate a browser-based face detection library (e.g., face-api.js) and add required model assets as static files so the Face Detector page works in production builds.",
+      "files": [
+        "frontend/public/models/face-api/README.md",
+        "frontend/public/models/face-api/tiny_face_detector_model-weights_manifest.json",
+        "frontend/src/pages/FaceDetectorPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-entry-point-to-reach-the-face-detector-page-from-the-existing-app-ui-navigation-using-english-user-facing-labels",
+      "featureTitle": "Add an entry point to reach the Face Detector page from the existing app UI (navigation) using English user-facing labels.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/AppLayout.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
