@@ -1,0 +1,103 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-build-a-complete-react-typescript-frontend-for-snapgram-with-the-following-pages-and-features-1-landing-login-page-with-the-snapgram-brand-name-and-internet-identity-sign-in-2-home-feed-showing-posts-from-followed-users-and-own-posts-with-infinite-or-paginated-scroll-3-explore-discover-page-showing-all-recent-posts-4-create-post-page-text-content-up-to-500-characters-optional-image-url-5-user-profile-page-showing-avatar-display-name-bio-follower-following-counts-and-the-user-s-own-posts-with-follow-unfollow-button-for-other-users-6-post-detail-view-with-comments-and-like-button-7-edit-profile-page-displayname-bio-avatarurl-gate-all-pages-except-landing-behind-authentication-using-the-existing-requireauth-component",
+      "featureTitle": "Build a complete React + TypeScript frontend for Snapgram with the following pages and features: (1) Landing/Login page with the Snapgram brand name and Internet Identity sign-in, (2) Home feed showing posts from followed users and own posts with infinite or paginated scroll, (3) Explore/Discover page showing all recent posts, (4) Create Post page (text content up to 500 characters, optional image URL), (5) User Profile page showing avatar, display name, bio, follower/following counts, and the user's own posts with follow/unfollow button for other users, (6) Post detail view with comments and like button, (7) Edit Profile page (displayName, bio, avatarUrl). Gate all pages except Landing behind authentication using the existing RequireAuth component.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/comments/AddCommentForm.tsx",
+        "frontend/src/components/comments/CommentsList.tsx",
+        "frontend/src/components/layout/AppLayout.tsx",
+        "frontend/src/components/post/PostCard.tsx",
+        "frontend/src/components/profile/FollowButton.tsx",
+        "frontend/src/components/profile/ProfileHeader.tsx",
+        "frontend/src/pages/CreatePostPage.tsx",
+        "frontend/src/pages/EditProfilePage.tsx",
+        "frontend/src/pages/ExplorePage.tsx",
+        "frontend/src/pages/HomeFeedPage.tsx",
+        "frontend/src/pages/LandingPage.tsx",
+        "frontend/src/pages/PostDetailPage.tsx",
+        "frontend/src/pages/UserProfilePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-wire-all-frontend-snapgram-pages-to-the-backend-using-react-query-implement-hooks-for-useprofile-usefeed-useexploreposts-useuserposts-usecreatepost-uselikepost-usefollowuser-useaddcomment-usecomments-include-loading-spinners-error-toasts-and-optimistic-or-invalidation-based-cache-updates-after-mutations",
+      "featureTitle": "Wire all frontend Snapgram pages to the backend using React Query. Implement hooks for: useProfile, useFeed, useExplorePosts, useUserPosts, useCreatePost, useLikePost, useFollowUser, useAddComment, useComments. Include loading spinners, error toasts, and optimistic or invalidation-based cache updates after mutations.",
+      "files": [
+        "frontend/src/components/auth/ProfileSetupDialog.tsx",
+        "frontend/src/hooks/useSnapgramQueries.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-cohesive-visual-theme-for-snapgram-inspired-by-modern-social-media-aesthetics-use-a-warm-gradient-accented-color-palette-e-g-warm-pinks-oranges-or-sunset-tones-not-blue-or-purple-design-a-clean-card-based-layout-for-posts-a-sticky-top-navigation-bar-with-the-snapgram-logo-bottom-tab-navigation-on-mobile-viewports-and-smooth-hover-focus-transitions-use-tailwind-css-and-shadcn-components-consistently-across-all-pages",
+      "featureTitle": "Apply a cohesive visual theme for Snapgram inspired by modern social media aesthetics. Use a warm gradient-accented color palette (e.g., warm pinks, oranges, or sunset tones) — not blue or purple. Design a clean card-based layout for posts, a sticky top navigation bar with the Snapgram logo, bottom tab navigation on mobile viewports, and smooth hover/focus transitions. Use Tailwind CSS and shadcn components consistently across all pages.",
+      "files": [
+        "frontend/index.css",
+        "frontend/src/components/layout/AppLayout.tsx",
+        "frontend/src/components/layout/BottomTabNav.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-generate-and-display-brand-images-for-snapgram-a-logo-mark-used-in-the-navigation-header-and-a-hero-illustration-for-the-landing-page-store-images-as-static-assets-under-frontend-public-assets-generated-and-reference-them-directly-in-the-frontend-components",
+      "featureTitle": "Generate and display brand images for Snapgram: a logo mark used in the navigation header, and a hero illustration for the landing page. Store images as static assets under frontend/public/assets/generated and reference them directly in the frontend components.",
+      "files": [
+        "frontend/src/components/layout/AppLayout.tsx",
+        "frontend/src/pages/LandingPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "kind": "build_request",
+  "title": "Create Snapgram Social Media App",
+  "projectName": "Snapgram",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-12",
+      "text": "Replace the existing shinchan diary backend with a new Motoko single-actor backend for a social media app named 'snapgram'. The backend must support: user profiles (displayName, bio, avatarUrl, createdAt), posts (id, authorPrincipal, content up to 500 chars, imageUrl optional, createdAt, likesCount), follow relationships (follower/following principals), likes (postId + principal), and comments (id, postId, authorPrincipal, content, createdAt). Expose query and update methods for: createProfile, getProfile, updateProfile, createPost, getPosts (paginated feed), getPostsByUser, likePost, unlikePost, followUser, unfollowUser, getFollowers, getFollowing, addComment, getComments. All write operations must be gated to authenticated (non-anonymous) callers.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "I want to make social media app name is snapgram"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User profiles can be created and retrieved by principal",
+        "Posts can be created, listed (feed), and listed by user",
+        "Like and unlike operations are idempotent and correctly tracked",
+        "Follow and unfollow operations are recorded and queryable",
+        "Comments can be added to posts and retrieved",
+        "Anonymous callers are rejected on all write methods",
+        "Backend compiles and deploys without errors"
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Build a complete React + TypeScript frontend for Snapgram with the following pages and features: (1) Landing/Login page with the Snapgram brand name and Internet Identity sign-in, (2) Home feed showing posts from followed users and own posts with infinite or paginated scroll, (3) Explore/Discover page showing all recent posts, (4) Create Post page (text content up to 500 characters, optional image URL), (5) User Profile page showing avatar, display name, bio, follower/following counts, and the user's own posts with follow/unfollow button for other users, (6) Post detail view with comments and like button, (7) Edit Profile page (displayName, bio, avatarUrl). Gate all pages except Landing behind authentication using the existing RequireAuth component.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "I want to make social media app name is snapgram"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Landing page displays 'Snapgram' brand name and Internet Identity login button",
+        "Authenticated users see a home feed page",
+        "Users can create a post with text content",
+        "Users can view another user's profile and follow or unfollow them",
+        "Post detail page shows all comments and a like button",
+        "Edit profile form saves changes successfully",
+        "Unauthenticated users are redirected to the landing/login page for all protected routes",
+        "Loading states and error messages are shown during data operations"
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Wire all frontend Snapgram pages to the backend using React Query. Implement hooks for: useProfile, useFeed, useExplorePosts, useUserPosts, useCreatePost, useLikePost, useFollowUser, useAddComment, useComments. Include loading spinners, error toasts, and optimistic or invalidation-based cache updates after mutations.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "I want to make social media app name is snapgram"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Feed updates automatically after creating a post",
+        "Like count updates immediately after liking or unliking",
+        "Follow/unfollow status reflects correctly after action",
+        "Comments list refreshes after adding a comment",
+        "Error messages appear on failed operations",
+        "Loading indicators are shown while data is fetching"
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Apply a cohesive visual theme for Snapgram inspired by modern social media aesthetics. Use a warm gradient-accented color palette (e.g., warm pinks, oranges, or sunset tones) — not blue or purple. Design a clean card-based layout for posts, a sticky top navigation bar with the Snapgram logo, bottom tab navigation on mobile viewports, and smooth hover/focus transitions. Use Tailwind CSS and shadcn components consistently across all pages.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "I want to make social media app name is snapgram"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All pages share a consistent color palette and typography",
+        "Navigation bar is visible and functional on all authenticated pages",
+        "Post cards have a uniform visual style across feed, explore, and profile pages",
+        "No blue or purple primary colors are used",
+        "The app is usable on both desktop and mobile viewports"
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Generate and display brand images for Snapgram: a logo mark used in the navigation header, and a hero illustration for the landing page. Store images as static assets under frontend/public/assets/generated and reference them directly in the frontend components.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "I want to make social media app name is snapgram"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Snapgram logo appears in the navigation header on all authenticated pages",
+        "Hero illustration appears on the landing/login page",
+        "Images load correctly in production builds",
+        "No backend routes are used to serve the images"
+      ]
+    }
+  ],
+  "constraints": [
+    "All Motoko logic must remain in a single actor file (backend/main.mo)",
+    "Do not edit files listed in frontend.immutablePaths",
+    "Use existing Internet Identity auth infrastructure (useInternetIdentity hook and RequireAuth component)",
+    "Do not use blue or purple as the primary color palette"
+  ],
+  "nonGoals": [
+    "Real-time messaging or chat features",
+    "Image file upload (image URLs only)",
+    "Third-party OAuth or social login (only Internet Identity)",
+    "Push notifications or email notifications",
+    "GPS or location-based features",
+    "Preserving or migrating the existing shinchan diary data model"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Snapgram wordmark logo with a warm gradient camera or spark icon, suitable for a navigation bar (snapgram-logo.dim_320x80.png)",
+      "Warm sunset gradient hero illustration with abstract social connection motif for a landing page (snapgram-hero.dim_1200x600.png)"
+    ],
+    "edits": []
+  }
+}

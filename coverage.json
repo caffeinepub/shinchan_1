@@ -1,0 +1,149 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-03-01T03:09:20.703Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-12",
+        "summary": "Replace the existing shinchan diary backend with a new Motoko single-actor backend for a social media app named 'snapgram'. The backend must support: user profiles (displayName, bio, avatarUrl, createdAt), posts (id, authorPrincipal, content up to 500 chars, imageUrl optional, createdAt, likesCount), follow relationships (follower/following principals), likes (postId + principal), and comments (id, postId, authorPrincipal, content, createdAt). Expose query and update methods for: createProfile, getProfile, updateProfile, createPost, getPosts (paginated feed), getPostsByUser, likePost, unlikePost, followUser, unfollowUser, getFollowers, getFollowing, addComment, getComments. All write operations must be gated to authenticated (non-anonymous) callers.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Build a complete React + TypeScript frontend for Snapgram with the following pages and features: (1) Landing/Login page with the Snapgram brand name and Internet Identity sign-in, (2) Home feed showing posts from followed users and own posts with infinite or paginated scroll, (3) Explore/Discover page showing all recent posts, (4) Create Post page (text content up to 500 characters, optional image URL), (5) User Profile page showing avatar, display name, bio, follower/following counts, and the user's own posts with follow/unfollow button for other users, (6) Post detail view with comments and like button, (7) Edit Profile page (displayName, bio, avatarUrl). Gate all pages except Landing behind authentication using the existing RequireAuth component.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/LandingPage.tsx",
+          "frontend/src/pages/HomeFeedPage.tsx",
+          "frontend/src/pages/ExplorePage.tsx",
+          "frontend/src/pages/CreatePostPage.tsx",
+          "frontend/src/pages/UserProfilePage.tsx",
+          "frontend/src/pages/PostDetailPage.tsx",
+          "frontend/src/pages/EditProfilePage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/layout/AppLayout.tsx",
+          "frontend/src/components/post/PostCard.tsx",
+          "frontend/src/components/profile/FollowButton.tsx",
+          "frontend/src/components/profile/ProfileHeader.tsx",
+          "frontend/src/components/comments/CommentsList.tsx",
+          "frontend/src/components/comments/AddCommentForm.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/LandingPage.tsx",
+          "frontend/src/pages/HomeFeedPage.tsx",
+          "frontend/src/pages/ExplorePage.tsx",
+          "frontend/src/pages/CreatePostPage.tsx",
+          "frontend/src/pages/UserProfilePage.tsx",
+          "frontend/src/pages/PostDetailPage.tsx",
+          "frontend/src/pages/EditProfilePage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/layout/AppLayout.tsx",
+          "frontend/src/components/post/PostCard.tsx",
+          "frontend/src/components/profile/FollowButton.tsx",
+          "frontend/src/components/profile/ProfileHeader.tsx",
+          "frontend/src/components/comments/CommentsList.tsx",
+          "frontend/src/components/comments/AddCommentForm.tsx"
+        ]
+      },
+      {
+        "id": "REQ-14",
+        "summary": "Wire all frontend Snapgram pages to the backend using React Query. Implement hooks for: useProfile, useFeed, useExplorePosts, useUserPosts, useCreatePost, useLikePost, useFollowUser, useAddComment, useComments. Include loading spinners, error toasts, and optimistic or invalidation-based cache updates after mutations.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useSnapgramQueries.ts",
+          "frontend/src/hooks/useCurrentUserProfile.ts",
+          "frontend/src/components/auth/ProfileSetupDialog.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useSnapgramQueries.ts",
+          "frontend/src/components/auth/ProfileSetupDialog.tsx"
+        ]
+      },
+      {
+        "id": "REQ-15",
+        "summary": "Apply a cohesive visual theme for Snapgram inspired by modern social media aesthetics. Use a warm gradient-accented color palette (e.g., warm pinks, oranges, or sunset tones) — not blue or purple. Design a clean card-based layout for posts, a sticky top navigation bar with the Snapgram logo, bottom tab navigation on mobile viewports, and smooth hover/focus transitions. Use Tailwind CSS and shadcn components consistently across all pages.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/layout/BottomTabNav.tsx",
+          "frontend/src/components/layout/AppLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/layout/BottomTabNav.tsx",
+          "frontend/src/components/layout/AppLayout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Generate and display brand images for Snapgram: a logo mark used in the navigation header, and a hero illustration for the landing page. Store images as static assets under frontend/public/assets/generated and reference them directly in the frontend components.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/layout/AppLayout.tsx",
+          "frontend/src/pages/LandingPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/layout/AppLayout.tsx",
+          "frontend/src/pages/LandingPage.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/public/assets/generated/snapgram-hero.dim_1200x600.png",
+    "frontend/public/assets/generated/snapgram-logo.dim_320x80.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/auth/ProfileSetupDialog.tsx",
+    "frontend/src/components/auth/RequireAuth.tsx",
+    "frontend/src/components/comments/AddCommentForm.tsx",
+    "frontend/src/components/comments/CommentsList.tsx",
+    "frontend/src/components/layout/AppLayout.tsx",
+    "frontend/src/components/layout/BottomTabNav.tsx",
+    "frontend/src/components/post/PostCard.tsx",
+    "frontend/src/components/profile/FollowButton.tsx",
+    "frontend/src/components/profile/ProfileHeader.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useDiaryQueries.ts",
+    "frontend/src/hooks/useSnapgramQueries.ts",
+    "frontend/src/pages/CreatePostPage.tsx",
+    "frontend/src/pages/EditProfilePage.tsx",
+    "frontend/src/pages/EntriesListPage.tsx",
+    "frontend/src/pages/EntryCreatePage.tsx",
+    "frontend/src/pages/EntryDetailPage.tsx",
+    "frontend/src/pages/ExplorePage.tsx",
+    "frontend/src/pages/FaceDetectorPage.tsx",
+    "frontend/src/pages/HomeFeedPage.tsx",
+    "frontend/src/pages/LandingPage.tsx",
+    "frontend/src/pages/PostDetailPage.tsx",
+    "frontend/src/pages/UserProfilePage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

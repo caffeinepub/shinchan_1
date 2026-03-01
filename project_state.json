@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 9,
+  "summary": "Build a social media app named \"snapgram\".",
+  "architectural_notes": [
+    "Face detection will be implemented in the React frontend (browser-based, e.g., face-api.js) with no backend changes; support both webcam and image upload flows.",
+    "Advertising integration: include third-party ad/link scripts (e.g., AdSense) in the React frontend and add UI placements for ad units/links; ensure it works in production builds."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Snapgram wordmark logo with a warm gradient camera or spark icon, suitable for a navigation bar (snapgram-logo.dim_320x80.png)\n- Warm sunset gradient hero illustration with abstract social connection motif for a landing page (snapgram-hero.dim_1200x600.png)",
+  "existing_features": [
+    {
+      "id": "feature-add-internet-identity-sign-in-out-to-the-app-and-gate-diary-crud-features-so-that-only-signed-in-users-can-create-view-edit-or-delete-diary-entries",
+      "title": "Add Internet Identity sign-in/out to the app and gate diary CRUD features so that only signed-in users can create, view, edit, or delete diary entries.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-diary-ui-for-shinchan-with-the-following-screens-1-home-landing-page-with-app-name-shinchan-2-entries-list-with-search-by-title-content-and-filter-by-date-3-entry-detail-view-4-create-entry-form-5-edit-entry-form-6-delete-confirmation",
+      "title": "Implement the diary UI for 'shinchan' with the following screens: (1) Home/Landing page with app name 'shinchan', (2) Entries list with search (by title/content) and filter by date, (3) Entry detail view, (4) Create entry form, (5) Edit entry form, (6) Delete confirmation.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-wire-the-frontend-to-the-backend-using-react-query-for-all-diary-operations-list-get-create-update-delete-including-loading-states-error-handling-and-success-feedback",
+      "title": "Wire the frontend to the backend using React Query for all diary operations (list/get/create/update/delete), including loading states, error handling, and success feedback.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-cohesive-visual-theme-for-the-shinchan-diary-app-consistent-colors-typography-spacing-and-component-styling-using-tailwind-shadcn-components-avoid-a-blue-purple-primary-palette",
+      "title": "Apply a cohesive visual theme for the 'shinchan' diary app (consistent colors, typography, spacing, and component styling) using Tailwind + shadcn components; avoid a blue/purple primary palette.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-static-brand-images-to-the-frontend-and-display-them-in-the-ui-e-g-logo-in-header-and-subtle-background-hero-visual-on-landing-page-store-generated-assets-under-frontend-public-assets-generated-and-reference-them-directly-from-the-frontend-no-backend-image-routing",
+      "title": "Add generated static brand images to the frontend and display them in the UI (e.g., logo in header and subtle background/hero visual on landing page). Store generated assets under frontend/public/assets/generated and reference them directly from the frontend (no backend image routing).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-authenticated-face-detector-page-that-supports-both-1-live-webcam-face-detection-and-2-photo-upload-face-detection-running-entirely-in-the-browser-no-server-side-processing",
+      "title": "Add a new authenticated Face Detector page that supports both (1) live webcam face detection and (2) photo upload face detection, running entirely in the browser (no server-side processing).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-a-browser-based-face-detection-library-e-g-face-api-js-and-add-required-model-assets-as-static-files-so-the-face-detector-page-works-in-production-builds",
+      "title": "Integrate a browser-based face detection library (e.g., face-api.js) and add required model assets as static files so the Face Detector page works in production builds.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-entry-point-to-reach-the-face-detector-page-from-the-existing-app-ui-navigation-using-english-user-facing-labels",
+      "title": "Add an entry point to reach the Face Detector page from the existing app UI (navigation) using English user-facing labels.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-configurable-sponsored-monetization-link-section-to-the-app-ui-similar-to-an-ad-link-shown-site-wide-in-the-footer-with-english-user-facing-text-e-g-label-sponsored-and-a-clickable-link-the-section-must-be-safely-hidden-when-not-configured",
+      "title": "Add a configurable sponsored/monetization link section to the app UI (similar to an ad link), shown site-wide in the footer, with English user-facing text (e.g., label \"Sponsored\" and a clickable link). The section must be safely hidden when not configured.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-a-simple-codebase-local-configuration-mechanism-for-the-sponsored-monetization-link-e-g-build-time-environment-variables-or-a-small-frontend-config-file-that-allows-setting-the-destination-url-and-the-link-text-without-editing-multiple-ui-files",
+      "title": "Provide a simple, codebase-local configuration mechanism for the sponsored/monetization link (e.g., build-time environment variables or a small frontend config file) that allows setting the destination URL and the link text without editing multiple UI files.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-complete-react-typescript-frontend-for-snapgram-with-the-following-pages-and-features-1-landing-login-page-with-the-snapgram-brand-name-and-internet-identity-sign-in-2-home-feed-showing-posts-from-followed-users-and-own-posts-with-infinite-or-paginated-scroll-3-explore-discover-page-showing-all-recent-posts-4-create-post-page-text-content-up-to-500-characters-optional-image-url-5-user-profile-page-showing-avatar-display-name-bio-follower-following-counts-and-the-user-s-own-posts-with-follow-unfollow-button-for-other-users-6-post-detail-view-with-comments-and-like-button-7-edit-profile-page-displayname-bio-avatarurl-gate-all-pages-except-landing-behind-authentication-using-the-existing-requireauth-component",
+      "title": "Build a complete React + TypeScript frontend for Snapgram with the following pages and features: (1) Landing/Login page with the Snapgram brand name and Internet Identity sign-in, (2) Home feed showing posts from followed users and own posts with infinite or paginated scroll, (3) Explore/Discover page showing all recent posts, (4) Create Post page (text content up to 500 characters, optional image URL), (5) User Profile page showing avatar, display name, bio, follower/following counts, and the user's own posts with follow/unfollow button for other users, (6) Post detail view with comments and like button, (7) Edit Profile page (displayName, bio, avatarUrl). Gate all pages except Landing behind authentication using the existing RequireAuth component.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-wire-all-frontend-snapgram-pages-to-the-backend-using-react-query-implement-hooks-for-useprofile-usefeed-useexploreposts-useuserposts-usecreatepost-uselikepost-usefollowuser-useaddcomment-usecomments-include-loading-spinners-error-toasts-and-optimistic-or-invalidation-based-cache-updates-after-mutations",
+      "title": "Wire all frontend Snapgram pages to the backend using React Query. Implement hooks for: useProfile, useFeed, useExplorePosts, useUserPosts, useCreatePost, useLikePost, useFollowUser, useAddComment, useComments. Include loading spinners, error toasts, and optimistic or invalidation-based cache updates after mutations.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-cohesive-visual-theme-for-snapgram-inspired-by-modern-social-media-aesthetics-use-a-warm-gradient-accented-color-palette-e-g-warm-pinks-oranges-or-sunset-tones-not-blue-or-purple-design-a-clean-card-based-layout-for-posts-a-sticky-top-navigation-bar-with-the-snapgram-logo-bottom-tab-navigation-on-mobile-viewports-and-smooth-hover-focus-transitions-use-tailwind-css-and-shadcn-components-consistently-across-all-pages",
+      "title": "Apply a cohesive visual theme for Snapgram inspired by modern social media aesthetics. Use a warm gradient-accented color palette (e.g., warm pinks, oranges, or sunset tones) — not blue or purple. Design a clean card-based layout for posts, a sticky top navigation bar with the Snapgram logo, bottom tab navigation on mobile viewports, and smooth hover/focus transitions. Use Tailwind CSS and shadcn components consistently across all pages.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-display-brand-images-for-snapgram-a-logo-mark-used-in-the-navigation-header-and-a-hero-illustration-for-the-landing-page-store-images-as-static-assets-under-frontend-public-assets-generated-and-reference-them-directly-in-the-frontend-components",
+      "title": "Generate and display brand images for Snapgram: a logo mark used in the navigation header, and a hero illustration for the landing page. Store images as static assets under frontend/public/assets/generated and reference them directly in the frontend components.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a diary website (\"shinchan\")",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create the core diary data model and persistence in the Motoko single-actor backend to store diary entries per authenticated user (by caller principal). Each entry must include: id, createdAt, updatedAt, entryDate (user-selected date), title, and content.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add face detection to the shinchan diary app supporting both webcam live detection and photo upload detection (frontend-based, e.g., face-api.js).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add an advertising/monetization link integration to the shinchan website (e.g., Google AdSense-style ads/links).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Create a social media app named 'snapgram'",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Replace the existing shinchan diary backend with a new Motoko single-actor backend for a social media app named 'snapgram'. The backend must support: user profiles (displayName, bio, avatarUrl, createdAt), posts (id, authorPrincipal, content up to 500 chars, imageUrl optional, createdAt, likesCount), follow relationships (follower/following principals), likes (postId + principal), and comments (id, postId, authorPrincipal, content, createdAt). Expose query and update methods for: createProfile, getProfile, updateProfile, createPost, getPosts (paginated feed), getPostsByUser, likePost, unlikePost, followUser, unfollowUser, getFollowers, getFollowing, addComment, getComments. All write operations must be gated to authenticated (non-anonymous) callers.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "shinchan",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

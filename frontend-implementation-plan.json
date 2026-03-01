@@ -1,0 +1,177 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Snapgram Social Media App Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-13",
+      "summary": "Build complete React + TypeScript frontend for Snapgram with authentication-gated pages: Landing/Login, Home feed, Explore, Create Post, User Profile, Post detail, and Edit Profile",
+      "acceptanceCriteria": [
+        "Landing page displays 'Snapgram' brand name and Internet Identity login button",
+        "Authenticated users see a home feed page",
+        "Users can create a post with text content",
+        "Users can view another user's profile and follow or unfollow them",
+        "Post detail page shows all comments and a like button",
+        "Edit profile form saves changes successfully",
+        "Unauthenticated users are redirected to the landing/login page for all protected routes",
+        "Loading states and error messages are shown during data operations"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Replace the existing shinchan diary landing page content with Snapgram branding. Display the Snapgram logo using the generated image at frontend/public/assets/generated/snapgram-logo.dim_320x80.png and hero illustration at frontend/public/assets/generated/snapgram-hero.dim_1200x600.png. Show the Internet Identity login button prominently. Remove all diary-related content and apply warm gradient aesthetic matching the Snapgram theme."
+        },
+        {
+          "path": "frontend/src/pages/HomeFeedPage.tsx",
+          "operation": "create",
+          "description": "Create the authenticated home feed page showing posts from followed users and own posts. Include infinite or paginated scroll. Display post cards with author info, content, optional image, like count, and timestamp. Show loading spinner while fetching. Handle empty state when no posts are available. Wrap content in RequireAuth to ensure authentication."
+        },
+        {
+          "path": "frontend/src/pages/ExplorePage.tsx",
+          "operation": "create",
+          "description": "Create the Explore/Discover page showing all recent posts from all users. Use the same post card layout as HomeFeedPage but fetch from a different data source (all posts vs. followed posts). Include loading and error states. Wrap content in RequireAuth."
+        },
+        {
+          "path": "frontend/src/pages/CreatePostPage.tsx",
+          "operation": "create",
+          "description": "Create the Create Post page with a form for text content (up to 500 characters) and optional image URL. Include character counter, validation, submit button with loading state, and success/error feedback. Navigate to home feed after successful creation. Wrap content in RequireAuth."
+        },
+        {
+          "path": "frontend/src/pages/UserProfilePage.tsx",
+          "operation": "create",
+          "description": "Create the User Profile page displaying avatar, display name, bio, follower/following counts, and the user's posts. Show follow/unfollow button for other users (not for the current user's own profile). Fetch the profile and posts by principal from URL params. Include loading and error states. Wrap content in RequireAuth."
+        },
+        {
+          "path": "frontend/src/pages/PostDetailPage.tsx",
+          "operation": "create",
+          "description": "Create the Post detail view page showing full post content, like button with count, and comments list. Include a form to add new comments. Fetch post and comments by post ID from URL params. Show loading spinners and error messages appropriately. Wrap content in RequireAuth."
+        },
+        {
+          "path": "frontend/src/pages/EditProfilePage.tsx",
+          "operation": "create",
+          "description": "Create the Edit Profile page with a form for displayName, bio, and avatarUrl. Pre-fill with current user profile data. Include save button with loading state and success/error feedback. Navigate back to user profile after successful save. Wrap content in RequireAuth."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire all new Snapgram pages into the router. Register routes for /feed (HomeFeedPage), /explore (ExplorePage), /create (CreatePostPage), /profile/:principal (UserProfilePage), /post/:postId (PostDetailPage), and /edit-profile (EditProfilePage). Keep the landing route at / (LandingPage). Remove old diary-related routes (entries list, entry create, entry detail, face detector). Ensure all authenticated routes are protected."
+        },
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Update the header to display the Snapgram logo (frontend/public/assets/generated/snapgram-logo.dim_320x80.png) instead of the shinchan logo. Add bottom tab navigation for mobile viewports with links to Home Feed, Explore, Create Post, and User Profile (current user). Update the navigation bar styling to match the warm gradient Snapgram theme. Remove diary-related navigation links."
+        },
+        {
+          "path": "frontend/src/components/post/PostCard.tsx",
+          "operation": "create",
+          "description": "Create a reusable PostCard component displaying author avatar, display name, post content, optional image, like count, like button, timestamp, and a link to post detail. Accept post data as props and include hover/focus transitions. Use shadcn Card component as the base."
+        },
+        {
+          "path": "frontend/src/components/profile/FollowButton.tsx",
+          "operation": "create",
+          "description": "Create a FollowButton component that toggles follow/unfollow state for a given user principal. Show loading state during mutation. Use optimistic updates or invalidation to refresh follower counts immediately."
+        },
+        {
+          "path": "frontend/src/components/profile/ProfileHeader.tsx",
+          "operation": "create",
+          "description": "Create a ProfileHeader component displaying avatar, display name, bio, follower count, following count, and conditionally the FollowButton (only for other users). Accept profile data and principal as props."
+        },
+        {
+          "path": "frontend/src/components/comments/CommentsList.tsx",
+          "operation": "create",
+          "description": "Create a CommentsList component displaying all comments for a post with author display name, comment content, and timestamp. Accept comments array as props. Handle empty state when no comments exist."
+        },
+        {
+          "path": "frontend/src/components/comments/AddCommentForm.tsx",
+          "operation": "create",
+          "description": "Create an AddCommentForm component with a text input and submit button for adding a comment to a post. Include loading state and validation. Trigger cache invalidation or optimistic update after submission."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Wire frontend to backend using React Query hooks for profiles, feed, posts, likes, follows, and comments with loading states, error handling, and cache updates",
+      "acceptanceCriteria": [
+        "Feed updates automatically after creating a post",
+        "Like count updates immediately after liking or unliking",
+        "Follow/unfollow status reflects correctly after action",
+        "Comments list refreshes after adding a comment",
+        "Error messages appear on failed operations",
+        "Loading indicators are shown while data is fetching"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useSnapgramQueries.ts",
+          "operation": "create",
+          "description": "Create a comprehensive hooks file containing useProfile, useFeed, useExplorePosts, useUserPosts, useCreatePost, useLikePost, useUnlikePost, useFollowUser, useUnfollowUser, useAddComment, useComments, useUpdateProfile, useFollowers, useFollowing. Each hook uses react-query with proper queryKey, queryFn, enabled conditions, and mutation handling. Include loading spinners via isLoading/isFetching, error handling via error state, and cache invalidation or optimistic updates after mutations. Show error toasts on failures using the existing toast system."
+        },
+        {
+          "path": "frontend/src/hooks/useCurrentUserProfile.ts",
+          "operation": "modify",
+          "description": "Ensure the existing useGetCallerUserProfile and useSaveCallerUserProfile hooks are compatible with Snapgram's UserProfile type (displayName, bio, avatarUrl, createdAt). Update if necessary to match the backend interface. Verify the hook properly handles null profile state and prevents profile setup modal flash by returning actorFetching in isLoading."
+        },
+        {
+          "path": "frontend/src/components/auth/ProfileSetupDialog.tsx",
+          "operation": "modify",
+          "description": "Update the profile setup dialog to collect displayName, bio, and avatarUrl fields matching the Snapgram UserProfile structure. Replace the existing name-only form with inputs for all three fields. Include validation and loading feedback. Ensure the dialog only appears when userProfile is null and the user is authenticated."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Apply a cohesive warm gradient-accented visual theme for Snapgram using Tailwind CSS and shadcn components with sticky top navigation and mobile bottom tabs",
+      "acceptanceCriteria": [
+        "All pages share a consistent color palette and typography",
+        "Navigation bar is visible and functional on all authenticated pages",
+        "Post cards have a uniform visual style across feed, explore, and profile pages",
+        "No blue or purple primary colors are used",
+        "The app is usable on both desktop and mobile viewports"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.css",
+          "operation": "modify",
+          "description": "Replace the existing shinchan color palette with a warm gradient-accented Snapgram theme. Define CSS variables for warm pinks, oranges, and sunset tones in both light and dark modes using OKLCH tokens. Remove any blue or purple primary colors. Ensure the theme supports shadcn component styling and includes variables for background, foreground, card, border, primary, accent, and muted."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Update the Tailwind config to extend the warm gradient color palette defined in index.css. Add or adjust utility classes for the Snapgram aesthetic (e.g., gradient backgrounds, smooth transitions). Ensure the config supports mobile-first responsive design and includes breakpoints for sticky navigation and bottom tabs."
+        },
+        {
+          "path": "frontend/src/components/layout/BottomTabNav.tsx",
+          "operation": "create",
+          "description": "Create a BottomTabNav component for mobile viewports with tabs for Home Feed, Explore, Create Post, and User Profile. Use icons and labels. Show only on small screens (hidden on desktop). Apply warm gradient styling and smooth transitions matching the Snapgram theme."
+        },
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Integrate the BottomTabNav component into the layout, rendering it only on mobile viewports. Ensure the top navigation bar is sticky and visible on all authenticated pages. Apply warm gradient styling to the header. Update layout spacing to accommodate both top and bottom navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "summary": "Display generated brand images for Snapgram: logo in navigation header and hero illustration on landing page",
+      "acceptanceCriteria": [
+        "Snapgram logo appears in the navigation header on all authenticated pages",
+        "Hero illustration appears on the landing/login page",
+        "Images load correctly in production builds",
+        "No backend routes are used to serve the images"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Update the header logo to reference the generated Snapgram logo at frontend/public/assets/generated/snapgram-logo.dim_320x80.png. Use an <img> tag with appropriate alt text and styling. Ensure the logo is visible on all authenticated pages."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Integrate the generated hero illustration at frontend/public/assets/generated/snapgram-hero.dim_1200x600.png into the hero section of the landing page. Use an <img> tag with responsive sizing and alt text. Position the illustration prominently above or beside the login button."
+        }
+      ]
+    }
+  ]
+}
